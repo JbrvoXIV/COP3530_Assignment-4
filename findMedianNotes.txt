@@ -1,0 +1,35 @@
+a = [ 3, 5, 8, 9 ]
+      -     |  -
+b = [ 2, 6, 10, 12 ]
+      -     |   -
+      
+high = 4, low = 0, mid = 2, m1 = 8
+
+highTwo = 4, lowTwo = 0, midTwo = 2, m2 = 10
+
+while high - low > 2 && highTwo - lowTwo > 2
+
+if high - low % 2 == 0
+    m1 = arr1[mid] + arr1[mid - 1] / 2
+else
+    m1 = arr1[mid]
+if highTwo - lowTwo % 2 == 0
+    m2 = arr2[midTwo] + arr2[midTwo - 1] / 2
+else
+    m2 = arr2[midTwo]
+    
+if m1 == m2
+    return m1
+if m1 > m2
+    high = mid
+    mid = low + ((high - low) / 2)
+    lowTwo = midTwo
+    midTwo = lowTwo + ((highTwo - lowTwo) / 2)
+if m2 > m1
+    low = mid
+    mid = low + ((high - low) / 2)
+    highTwo = midTwo
+    midTwo = lowTwo + ((highTwo - lowTwo) / 2)        
+
+
+return max(arr1[low], arr2[low]) + min(arr1[mid], arr2[mid]) / 2.0
