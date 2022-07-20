@@ -2,32 +2,36 @@
 import util.DisjointSet;
 
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
+import java.util.ArrayList;
 
 public class CountBridgesDriver {
 
-    static DisjointSet<String> set;
-
     public static boolean possibleIslandTraversal(String[] names, HashMap<String, List<String>> bridges, String src, String dst) {
-        String parent1 = set.find(src);
-        String parent2 = set.find(dst);
-        if(parent1.equals(parent2)) {
-            if(!bridges.containsKey(src))
-                bridges.put(src, new LinkedList<>());
-            bridges.get(src).add(dst);
+        DisjointSet<String> ds = new DisjointSet<>(names);
+        for(String from: bridges.keySet()) {
+            for(String to: bridges.get(from))
+                ds.union(from, to);
         }
-        return bridges.containsKey(src);
+        return ds.find(src).equals(ds.find(dst));
     }
 
     public static void main(String[] args) {
-        String[] names = { "island1", "island2", "island3", "island4", "island5", "island6" };
-        HashMap<String, List<String>> bridges = new HashMap<>();
-        set = new DisjointSet<>(names);
-        set.union(names[0], names[2]);
-        set.union(names[3], names[2]);
-        System.out.println(possibleIslandTraversal(names, bridges, names[0], names[3])); // expect true
-        System.out.println(possibleIslandTraversal(names, bridges, names[5], names[4])); // expect false
-        System.out.println(bridges); // expect island1: island4 -> null
+        String[]names = new String[]{ "Alex", "Jacob", "Marc", "Bob" };
+        HashMap<String, List<String>> bridges = new HashMap<String, List<String>>();
+
+        bridges.put(names[0], new ArrayList<String>());
+        bridges.get(names[0]).add(names[1]); // bridge 1
+        bridges.put(names[2], new ArrayList<String>());
+        bridges.get(names[2]).add(names[3]);//bridge 2
+
+        System.out.println(possibleIslandTraversal(names, bridges, names[0], names[1])); // Jacob <-> Alex (true)
+        System.out.println(possibleIslandTraversal(names, bridges, names[1], names[0]));  // Jacob <-> Alex (true)
+        System.out.println(possibleIslandTraversal(names, bridges, names[2], names[3])); // Marc <-> Bob (true)
+        System.out.println(possibleIslandTraversal(names, bridges, names[2], names[1])); // Marc <-> Bob (false)
+
+        System.out.println(possibleIslandTraversal(names, bridges, names[0], names[3])); // Jacob <-> Alex (false)
+        bridges.get(names[0]).add(names[2]);// bridge 3
+        System.out.println(possibleIslandTraversal(names, bridges, names[0], names[3])); // Jacob <-> Alex <-> Marc <-> Bob (true)
     }
 }
