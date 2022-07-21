@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="aa2da8f4-6105-4655-a5ad-7bbf895f87dd" name="Changes" comment="implemented needed algorithm for ClassTopologicalSortDriver">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CountBridgesDriver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CountBridgesDriver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ClassTopologicalSortDriver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ClassTopologicalSortDriver.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +46,7 @@
       <recent name="util" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.CountBridgeDriver">
+  <component name="RunManager" selected="Application.ClassTopologicalSortDriver">
     <configuration name="ClassTopologicalSortDriver" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ClassTopologicalSortDriver" />
       <module name="LA4" />
@@ -75,8 +75,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.CountBridgeDriver" />
         <item itemvalue="Application.ClassTopologicalSortDriver" />
+        <item itemvalue="Application.CountBridgeDriver" />
         <item itemvalue="Application.FindMedianDriver" />
       </list>
     </recent_temporary>
@@ -140,14 +140,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="implemented possibleIslandTraversal to CountBridgesDriver" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/ClassTopologicalSortDriver.java</url>
-          <line>80</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="graph.entrySet().toArray()[2]" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

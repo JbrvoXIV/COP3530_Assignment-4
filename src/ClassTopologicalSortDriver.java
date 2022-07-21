@@ -63,20 +63,27 @@ public class ClassTopologicalSortDriver {
         while(scr.hasNextLine()) {
             splitLine = scr.nextLine().split("[\t,\"]"); // split by indicators
             Vertex from = new Vertex(splitLine[0]); // first index is guaranteed to not be in list
+            if(!verticesList.contains(from)) {
+                verticesList.add(from);
+            }
             Vertex to;
-            verticesList.add(from); // add to list of discovered vertices
+            //verticesList.add(from); // add to list of discovered vertices
             for(int i = 1; i < splitLine.length; i++) {
                 if(splitLine[i].equals("")) // skip unneeded empty string from split
                     continue;
                 to = new Vertex(splitLine[i]); // create new vertex from pre req to compare and find in list
                 if(!verticesList.contains(to)) // if not in list, add
                     verticesList.add(to);
-                addEdge(verticesList.get(verticesList.indexOf(from)), verticesList.get(verticesList.indexOf(to)), graph);
+                addEdge(verticesList.get(verticesList.indexOf(to)), verticesList.get(verticesList.indexOf(from)), graph);
                 // add edge from 'from' vertex to 'to' vertex
             }
         }
 
-        Vertex[] verticesArr = verticesList.toArray(new Vertex[verticesList.size()]); // convert list to arr to sort
+        Vertex[] verticesArr = new Vertex[verticesList.size()];
+        int i = 0;
+        for(Vertex v : verticesList) {
+            verticesArr[i++] = v;
+        }
 
         topSortUsingDFS(graph, verticesArr);
         Arrays.sort(verticesArr);
